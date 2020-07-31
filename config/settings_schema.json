@@ -1291,6 +1291,16 @@
     ]
   },
   {
+    "name": "Collection",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "buy-now",
+        "label": "Enable Buy Now"
+      }
+    ]
+  },
+  {
     "name": {
       "da": "Meddelelse for læg i indkøbskurven",
       "de": "Benachrichtigung für „Zum Warenkorb hinzufügen“",
