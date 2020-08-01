@@ -1294,9 +1294,13 @@
     "name": "Collection",
     "settings": [
       {
+        "type": "header",
+        "content": "Enable Buy Now Option"
+      },
+      {
         "type": "checkbox",
         "id": "buy-now",
-        "label": "Enable Buy Now"
+        "label": "Show"
       }
     ]
   },
