@@ -1301,11 +1301,6 @@
         "type": "checkbox",
         "id": "show-buy-now",
         "label": "Show"
-      },
-      {
-        "type": "checkbox",
-        "id": "hide-buy-now",
-        "label": "Hide"
       }
     ]
   },
