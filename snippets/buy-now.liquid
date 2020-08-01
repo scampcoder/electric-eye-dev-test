@@ -3,13 +3,12 @@
 
     Accepts:
     - collection: {Object} Collection Liquid object (required)
+    - product: {Object} Product Liquid object (optional)
 
     Usage:
-    {% include 'buy-now', collection: collection %}
+    {% include 'buy-now', collection: collection, product: product %}
 {% endcomment %}
-{% schema %}
-  {
-    "name": "Enable Buy Now Button",
-    "settings": []
-  }
-{% endschema %}
+
+{%- if settings.show_buy_now -%}
+  <input type="button" value="Buy Now">
+{%- endif -%}

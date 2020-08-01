@@ -1299,7 +1299,7 @@
       },
       {
         "type": "checkbox",
-        "id": "show-buy-now",
+        "id": "show_buy_now",
         "label": "Show"
       }
     ]
