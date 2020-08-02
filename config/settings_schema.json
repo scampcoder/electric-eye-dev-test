@@ -1295,12 +1295,17 @@
     "settings": [
       {
         "type": "header",
-        "content": "Enable Buy Now Option"
+        "content": "Enable Buy Now/Add to Cart Option"
       },
       {
         "type": "checkbox",
         "id": "show_buy_now",
         "label": "Show Buy Now"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_add_to_cart",
+        "label": "Show Add to Cart"
       }
     ]
   },
