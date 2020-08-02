@@ -3,12 +3,15 @@
 
     Accepts:
     - collection: {Object} Collection Liquid object (required)
-    - product: {Object} Product Liquid object (optional)
+    - product: {Object} Product Liquid object
 
     Usage:
     {% include 'buy-now', collection: collection, product: product %}
 {% endcomment %}
 
 {%- if settings.show_buy_now -%}
-  <input type="button" value="Buy Now">
+  <form method="post" action="/cart/{{ product.variants.first.id }}:1?channel=buy_button">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+    <input type="submit" value="Buy Now" class="btn"/>
+  </form>
 {%- endif -%}

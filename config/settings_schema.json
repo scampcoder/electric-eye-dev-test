@@ -1300,7 +1300,7 @@
       {
         "type": "checkbox",
         "id": "show_buy_now",
-        "label": "Show"
+        "label": "Show Buy Now"
       }
     ]
   },
