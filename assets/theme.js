@@ -7833,20 +7833,23 @@ function onYouTubeIframeAPIReady() {
 
 $('#Collection').on('click', 'button', function(e) {
   console.log("Button is connected!");
-  var product = this.dataset.productId;
-    $.ajax({
-      type: 'POST',
-      url: '/cart/add.js',
-      data: $(product).serialize(),
-      dataType: 'json',
-      success: function(product) {
-          console.log("Success!");
-          this._hideErrorMessage();
-          this._setupCartPopup(product);
-        }.bind(this),
-      error: function(response) {
-        console.log("Error!");
-        alert("There was an error while updating your cart. Please try again.")
+  console.log(this);
+  var button = document.querySelector('.add-to-cart');
+  var product = button.dataset.productId;
+  jQuery.post('/cart/add.js', {
+    items: [
+      {
+        quantity: 1,
+        id: product
+      }
+    ],
+    success: function(item) {
+      console.log("Success!");
+      //initiate addToCart
+    },
+    error: function(response) {
+      console.log("Error!");
+      alert("There was an error while updating your cart. Please try again.")
       }
     });
   });
