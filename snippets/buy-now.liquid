@@ -11,16 +11,16 @@
 
 
 {%- if settings.show_add_to_cart -%}
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-    <input type="submit" value="Add to Cart" class="btn"/>
+  <form method="post" action="/cart/add" class="product-form add-to-cart" data-productid="{{product.id}}">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-productid="{{product.id}}" data-variant-title="{{ product.variants[0].title }}" />
+    <input type="submit" value="Add to Cart" class="btn add-to-cart" />
   </form>
 {%- endif -%}
 
 
-{%- if settings.show_buy_now and settings.show_add_to_cart == false-%}
-  <form method="post" action="/cart/{{ product.variants.first.id }}:1?channel=buy_button">
+{%- if settings.show_buy_now and settings.show_add_to_cart == false -%}
+  <form method="post" class="product-form" action="/cart/add">
     <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-    <input type="submit" value="Buy Now" class="btn"/>
+    <input type="submit" value="Buy Now" class="btn buy-now" />
   </form>
 {%- endif -%}

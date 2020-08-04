@@ -7829,4 +7829,33 @@ function onYouTubeIframeAPIReady() {
   theme.ProductVideo.loadVideos(theme.ProductVideo.hosts.youtube);
 }
 
+$('.add-to-cart').on('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var product = {{ product.variants.first.id }};
+  var params = {
+    url: '/cart/add.js',
+    data: $(product).serialize(),
+    dataType: 'json'
+  };
+
+  $.post(params)
+    .done(
+      function(item) {
+        this._hideErrorMessage();
+        this._setupCartPopup(item);
+      }.bind(this)
+    )
+    .fail(
+      function(response) {
+        this.$previouslyFocusedElement.focus();
+        var errorMessage = response.responseJSON
+          ? response.responseJSON.description
+          : theme.strings.cartError;
+        this._showErrorMessage(errorMessage);
+        this._handleButtonLoadingState(false);
+      }.bind(this)
+    );
+}
+
 $(theme.init);
