@@ -3,12 +3,12 @@
 
     Accepts:
     - collection: {Object} Collection Liquid object (required)
-    - product: {Object} Product Liquid object (optional)
+    - product: {Object} Product Liquid object
 
     Usage:
     {% include 'buy-now', collection: collection, product: product %}
 {% endcomment %}
 
 {%- if settings.show_buy_now -%}
-  <input type="button" value="Buy Now">
+  <a href="/cart/add" class="btn buy-now">Buy Now</a>
 {%- endif -%}
