@@ -20,6 +20,6 @@
 {%- if settings.show_buy_now and settings.show_add_to_cart == false -%}
   <form method="post" class="product-form" action="/cart/add">
     <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-    <a href="/checkouts/{{ product.variants.first.id }}"><input type="submit" value="Buy Now" class="btn buy-now product-form__cart-submit" /></a>
+    <a href="/cart/{{ product.variants.first.id }}"><input type="submit" value="Buy Now" class="btn buy-now product-form__cart-submit" /></a>
   </form>
 {%- endif -%}

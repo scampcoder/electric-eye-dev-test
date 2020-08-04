@@ -7831,32 +7831,28 @@ function onYouTubeIframeAPIReady() {
 
 //Victoria's Button Code
 
-$('.add-to-cart').on('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  let product = this.data.productId;
-  let params = {
-    url: '/cart/add.js',
-    data: $(product).serialize(),
-    dataType: 'json'
-  };
-
-  $.post(params)
-    .done(
-      function(product) {
-        this._hideErrorMessage();
-        this._setupCartPopup(product);
-      }.bind(this)
-    )
-    .fail(function(response) {
+$('#Collection').on('click', 'button', function(e) {
+  console.log("Button is connected!");
+  var product =
+    $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: $(product).serialize(),
+      dataType: 'json',
+      success: function(product) {
+          console.log("Success!")
+          this._hideErrorMessage();
+          this._setupCartPopup(product);
+        }.bind(this),
+      error: function(response) {
+        console.log("Error!")
         this.$previouslyFocusedElement.focus();
         var errorMessage = response.responseJSON
-          ? response.responseJSON.description
-          : theme.strings.cartError;
+        ? response.responseJSON.description : theme.strings.cartError;
         this._showErrorMessage(errorMessage);
         this._handleButtonLoadingState(false);
-      }.bind(this)
-    );
-}
+        }.bind(this)
+      });
+});
 
 $(theme.init);
