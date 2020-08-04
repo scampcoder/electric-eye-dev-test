@@ -7829,11 +7829,13 @@ function onYouTubeIframeAPIReady() {
   theme.ProductVideo.loadVideos(theme.ProductVideo.hosts.youtube);
 }
 
+//Victoria's Button Code
+
 $('.add-to-cart').on('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
-  var product = {{ product.variants.first.id }};
-  var params = {
+  let product = this.data.productId;
+  let params = {
     url: '/cart/add.js',
     data: $(product).serialize(),
     dataType: 'json'
@@ -7841,13 +7843,12 @@ $('.add-to-cart').on('click', function(e) {
 
   $.post(params)
     .done(
-      function(item) {
+      function(product) {
         this._hideErrorMessage();
-        this._setupCartPopup(item);
+        this._setupCartPopup(product);
       }.bind(this)
     )
-    .fail(
-      function(response) {
+    .fail(function(response) {
         this.$previouslyFocusedElement.focus();
         var errorMessage = response.responseJSON
           ? response.responseJSON.description
