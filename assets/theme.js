@@ -7833,7 +7833,7 @@ function onYouTubeIframeAPIReady() {
 
 $('#Collection').on('click', 'button', function(e) {
   console.log("Button is connected!");
-  var product =
+  var product = this.dataset.productId;
     $.ajax({
       type: 'POST',
       url: '/cart/add.js',
@@ -7846,7 +7846,6 @@ $('#Collection').on('click', 'button', function(e) {
         }.bind(this),
       error: function(response) {
         console.log("Error!")
-        this.$previouslyFocusedElement.focus();
         var errorMessage = response.responseJSON
         ? response.responseJSON.description : theme.strings.cartError;
         this._showErrorMessage(errorMessage);
