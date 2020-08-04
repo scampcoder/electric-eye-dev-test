@@ -7840,18 +7840,15 @@ $('#Collection').on('click', 'button', function(e) {
       data: $(product).serialize(),
       dataType: 'json',
       success: function(product) {
-          console.log("Success!")
+          console.log("Success!");
           this._hideErrorMessage();
           this._setupCartPopup(product);
         }.bind(this),
       error: function(response) {
-        console.log("Error!")
-        var errorMessage = response.responseJSON
-        ? response.responseJSON.description : theme.strings.cartError;
-        this._showErrorMessage(errorMessage);
-        this._handleButtonLoadingState(false);
-        }.bind(this)
-      });
-});
+        console.log("Error!");
+        alert("There was an error while updating your cart. Please try again.")
+      }
+    });
+  });
 
 $(theme.init);
