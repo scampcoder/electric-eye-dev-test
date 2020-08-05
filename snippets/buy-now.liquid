@@ -1,14 +1,39 @@
 {% comment %}
-    Enables the use of a buy now button on collection pages
+    Enables the use of a buy now button or an add to cart button on collection pages
 
     Accepts:
     - collection: {Object} Collection Liquid object (required)
-    - product: {Object} Product Liquid object
+    - product: {Object} Product Liquid object (required)
 
     Usage:
     {% include 'buy-now', collection: collection, product: product %}
 {% endcomment %}
 
-{%- if settings.show_buy_now -%}
-  <a href="/cart/add" class="btn buy-now">Buy Now</a>
+
+{%- if settings.show_add_to_cart -%}
+<div class="product-template__container page-width"
+  id="ProductSection-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="product"
+  data-enable-history-state="true"
+  data-ajax-enabled="{{ settings.enable_ajax }}"
+>
+    <div class="product-form__controls-group product-form__controls-group--submit">
+      <div class="product-form__item product-form__item--submit product-form__item--payment-button">
+        <button type="submit" name="add" class="btn add-to-cart product-form__cart-submit" item="{{ product | json }}" product-id="{{ product.variants.first.id }}" product-name="{{ product.title }}">
+          <span data-add-to-cart-text>{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
 {%- endif -%}
+
+
+{%- if settings.show_buy_now and settings.show_add_to_cart == false -%}
+  <a href="/cart/add" class="btn product-form__cart-submit">Buy Now</a>
+{%- endif -%}
+
+
+<script type="application/json" id="ProductJson-{{ section.id }}">
+  {{ product | json }}
+</script>
