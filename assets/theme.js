@@ -7832,25 +7832,27 @@ function onYouTubeIframeAPIReady() {
 //Victoria's Button Code
 
 $('#Collection').on('click', 'button', function() {
-  console.log("Button is connected!");
-  console.log(this);
-  var product = $(this).attr("product-id");
   var name = $(this).attr("product-name");
-  console.log(product);
   $.ajax({
           	type: 'POST',
           	url: '/cart/add.js',
           	data: {
               	quantity: 1,
-              	id: product
+              	id: $(this).attr("product-id")
             },
           	dataType: 'json',
           	success: function() {
               	console.log("Success!");
                 alert("One " + name + " added to cart.")
-                this._addItemToCart();
-                //addToCart
-            },
+                /*This is where I kept getting stuck.
+                I think I understood that I needed to create a new theme.Product
+                to use the ._setupCartPopup method. I just kept trying to access
+                the product object that was added via POST to create that new theme.Product,
+                but I just couldn't figure things out.
+                let item = product just sent to cart
+                item = new theme.Product();
+                item._setupCartPopup(item);*/
+              },
             error: function() {
               console.log("Error!");
               alert("There was an error while updating your cart. Please try again.")
