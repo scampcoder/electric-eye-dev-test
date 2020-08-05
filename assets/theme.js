@@ -7835,6 +7835,7 @@ $('#Collection').on('click', 'button', function() {
   console.log("Button is connected!");
   console.log(this);
   var product = $(this).attr("product-id");
+  var name = $(this).attr("product-name");
   console.log(product);
   $.ajax({
           	type: 'POST',
@@ -7846,8 +7847,8 @@ $('#Collection').on('click', 'button', function() {
           	dataType: 'json',
           	success: function() {
               	console.log("Success!");
-                alert("Added to cart.")
-                product._initAddToCart();
+                alert("One " + name + " added to cart.")
+                this._addItemToCart();
                 //addToCart
             },
             error: function() {
