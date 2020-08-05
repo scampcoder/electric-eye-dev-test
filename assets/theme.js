@@ -7831,27 +7831,30 @@ function onYouTubeIframeAPIReady() {
 
 //Victoria's Button Code
 
-$('#Collection').on('click', 'button', function(e) {
+$('#Collection').on('click', 'button', function() {
   console.log("Button is connected!");
   console.log(this);
-  var button = document.querySelector('.add-to-cart');
-  var product = button.dataset.productId;
-  jQuery.post('/cart/add.js', {
-    items: [
-      {
-        quantity: 1,
-        id: product
-      }
-    ],
-    success: function(item) {
-      console.log("Success!");
-      //initiate addToCart
-    },
-    error: function(response) {
-      console.log("Error!");
-      alert("There was an error while updating your cart. Please try again.")
-      }
-    });
+  var product = $(this).attr("product-id");
+  console.log(product);
+  $.ajax({
+          	type: 'POST',
+          	url: '/cart/add.js',
+          	data: {
+              	quantity: 1,
+              	id: product
+            },
+          	dataType: 'json',
+          	success: function() {
+              	console.log("Success!");
+                alert("Added to cart.")
+                product._initAddToCart();
+                //addToCart
+            },
+            error: function() {
+              console.log("Error!");
+              alert("There was an error while updating your cart. Please try again.")
+            }
+        });
   });
 
 $(theme.init);
